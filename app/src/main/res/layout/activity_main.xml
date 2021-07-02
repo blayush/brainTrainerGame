@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/braintrainertextview"
+        android:layout_width="315dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="16dp"
+        android:alpha="1"
+        android:background="#4E3A3A"
+        android:fontFamily="@font/butcherman"
+        android:gravity="center"
+        android:text="Brain Trainer"
+        android:textColor="#E53935"
+        android:textSize="36sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/questiontextview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.204" />
+
+    <TextView
+        android:id="@+id/questiontextview"
+        android:layout_width="150dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="160dp"
+        android:alpha="1"
+        android:background="#C172F681"
+        android:fontFamily="@font/alfa_slab_one"
+        android:gravity="center"
+        android:text="11 + 23"
+        android:textSize="29sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.17" />
+
+    <TextView
+        android:id="@+id/timertextview"
+        android:layout_width="71dp"
+        android:layout_height="61dp"
+        android:alpha="1"
+        android:background="#C68ECF"
+        android:fontFamily="@font/almendra_sc"
+        android:gravity="center"
+        android:text="30s"
+        android:textSize="30sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/questiontextview"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.223" />
+
+    <TextView
+        android:id="@+id/scoretextview"
+        android:layout_width="71dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:alpha="1"
+        android:background="#43A047"
+        android:fontFamily="@font/almendra"
+        android:gravity="center"
+        android:text="11/19"
+        android:textSize="32sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/questiontextview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.226" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="282dp"
+        android:layout_height="206dp"
+        android:alpha="1"
+        android:visibility="visible"
+        app:columnCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.605"
+        app:rowCount="2">
+
+        <TextView
+            android:id="@+id/opt4textview"
+            android:layout_width="142dp"
+            android:layout_height="107dp"
+            android:background="#40C4FF"
+            android:fontFamily="@font/autour_one"
+            android:gravity="center"
+            android:onClick="checkanswer"
+            android:tag="3"
+            android:text="34"
+            android:textSize="26sp"
+            app:layout_column="1"
+            app:layout_row="1" />
+
+        <TextView
+            android:id="@+id/opt3textview"
+            android:layout_width="142dp"
+            android:layout_height="107dp"
+            android:background="#C8C85D"
+            android:fontFamily="@font/autour_one"
+            android:gravity="center"
+            android:onClick="checkanswer"
+            android:tag="2"
+            android:text="29"
+            android:textSize="26sp"
+            app:layout_column="0"
+            app:layout_row="1" />
+
+        <TextView
+            android:id="@+id/opt2textview"
+            android:layout_width="142dp"
+            android:layout_height="107dp"
+            android:background="#AB92F3"
+            android:fontFamily="@font/autour_one"
+            android:gravity="center"
+            android:onClick="checkanswer"
+            android:tag="1"
+            android:text="35"
+            android:textSize="26sp"
+            app:layout_column="1"
+            app:layout_row="0" />
+
+        <TextView
+            android:id="@+id/opt1textview"
+            android:layout_width="142dp"
+            android:layout_height="107dp"
+            android:background="#E1C3C3"
+            android:fontFamily="@font/autour_one"
+            android:gravity="center"
+            android:onClick="checkanswer"
+            android:tag="o"
+            android:text="25"
+            android:textSize="26sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <Button
+        android:id="@+id/submitbutton"
+        android:layout_width="124dp"
+        android:layout_height="59dp"
+        android:alpha="1"
+        android:fontFamily="@font/almendra"
+        android:onClick="startgamefun"
+        android:text="start"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:backgroundTint="#DD5D5D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.936" />
+
+    <TextView
+        android:id="@+id/resulttextview"
+        android:layout_width="196dp"
+        android:layout_height="36dp"
+        android:alpha="1"
+        android:fontFamily="@font/autour_one"
+        android:gravity="center"
+        android:text="Let's Start"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/submitbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+        app:layout_constraintVertical_bias="0.512" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
