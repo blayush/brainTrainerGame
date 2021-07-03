@@ -1,25 +1,23 @@
 package com.example.braintrainer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    Button submitbutton;
+    Button submitButton;
     TextView timertextview;
     TextView scoretextview;
     TextView questiontextview;
@@ -28,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     TextView opt3textview;
     TextView opt4textview;
     TextView resulttextview;
+    TextView lastQuestiontextView;
     int totalcorrect=0;
     int totalquestions=0;
     Random rand=new Random();
@@ -35,22 +34,46 @@ public class MainActivity extends AppCompatActivity {
     int number2;
     int correctanswer;
     int correcttag;
+    Boolean timeover=false;
 
     Boolean started=false;
 
+    public void timer(int n){
+        timertextview=findViewById(R.id.timertextview);
+        submitButton = findViewById(R.id.submitbutton);
+        lastQuestiontextView=findViewById(R.id.lastQuestiontextView);
+        new CountDownTimer(n*1000+100,1000){
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timertextview.setText(Long.toString(millisUntilFinished/1000));
+            }
+            public void onFinish(){
+            MediaPlayer mediaPlayerbuzzer=MediaPlayer.create(getApplicationContext(),R.raw.buzzer);
+            mediaPlayerbuzzer.start();
+            resulttextview.setText(scoretextview.getText().toString());
+            timeover=true;
+            started=false;
+            lastQuestiontextView.setText("FINAL RESULT :");
+            submitButton.setAlpha(1);
+            totalcorrect=0;
+            totalquestions=0;
+            submitButton.setText("START AGAIN");
 
+            }
+        }.start();
+    }
     public void newquestion(){
-        ArrayList<Integer> optionnumbers=new ArrayList<Integer>();
-        opt1textview=(TextView)findViewById(R.id.opt1textview);
-        opt2textview=(TextView)findViewById(R.id.opt2textview);
-        opt3textview=(TextView)findViewById(R.id.opt3textview);
-        opt4textview=(TextView)findViewById(R.id.opt4textview);
-        questiontextview=(TextView)findViewById(R.id.questiontextview);
+        ArrayList<Integer> optionnumbers=new ArrayList<>();
+        opt1textview= findViewById(R.id.opt1textview);
+        opt2textview= findViewById(R.id.opt2textview);
+        opt3textview= findViewById(R.id.opt3textview);
+        opt4textview= findViewById(R.id.opt4textview);
+        questiontextview= findViewById(R.id.questiontextview);
         number1= rand.nextInt(51);
         number2=rand.nextInt(51);
         correctanswer=number1+number2;
         correcttag=rand.nextInt(4);
-        questiontextview.setText(Integer.toString(number1)+" + "+Integer.toString(number2) );
+        questiontextview.setText(MessageFormat.format("{0} + {1}", number1, number2));
         for(int i=0;i<4;i++){
             if (i==correcttag)optionnumbers.add(correctanswer);
             else {
@@ -76,37 +99,45 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void checkanswer(View view){
-     resulttextview=(TextView)findViewById(R.id.resulttextview);
-     scoretextview=(TextView)findViewById((R.id.scoretextview));
-     MediaPlayer clickingSound=MediaPlayer.create(this,R.raw.choose);
-     clickingSound.start();
-     String checkTag=view.getTag().toString();
-     if(checkTag.equals(Integer.toString(correcttag))){
-           resulttextview.setText("Correct!");
-           totalcorrect++;
-     }
-     else {
-         resulttextview.setText("Wrong!");
-     }
-     totalquestions++;
-     scoretextview.setText(Integer.toString(totalcorrect)+"/"+Integer.toString(totalquestions));
-     newquestion();
+     resulttextview= findViewById(R.id.resulttextview);
+     scoretextview= findViewById((R.id.scoretextview));
+        if(started){
+            MediaPlayer clickingSound = MediaPlayer.create(this, R.raw.choose);
+            clickingSound.start();
+            String checkTag = view.getTag().toString();
+            if (checkTag.equals(Integer.toString(correcttag))) {
+                resulttextview.setText("Correct!");
+                totalcorrect++;
+            } else {
+                resulttextview.setText("Wrong!");
+            }
+            totalquestions++;
+            scoretextview.setText(MessageFormat.format("{0}/{1}", Integer.toString(totalcorrect), Integer.toString(totalquestions)));
+            newquestion();
+        }
     }
     public void startgamefun(View view){
-        submitbutton = (Button)findViewById(R.id.submitbutton);
-        timertextview=(TextView)findViewById(R.id.timertextview);
-        scoretextview=(TextView)findViewById(R.id.scoretextview);
-        questiontextview=(TextView)findViewById(R.id.questiontextview);
-        opt1textview=(TextView)findViewById(R.id.opt1textview);
-        opt2textview=(TextView)findViewById(R.id.opt2textview);
-        opt3textview=(TextView)findViewById(R.id.opt3textview);
-        opt4textview=(TextView)findViewById(R.id.opt4textview);
-
+        submitButton = findViewById(R.id.submitbutton);
+        timertextview= findViewById(R.id.timertextview);
+        scoretextview= findViewById(R.id.scoretextview);
+        questiontextview= findViewById(R.id.questiontextview);
+        opt1textview= findViewById(R.id.opt1textview);
+        opt2textview= findViewById(R.id.opt2textview);
+        opt3textview= findViewById(R.id.opt3textview);
+        opt4textview= findViewById(R.id.opt4textview);
+        resulttextview=findViewById(R.id.resulttextview);
+        lastQuestiontextView=findViewById(R.id.lastQuestiontextView);
         Log.i("clicked","true");
         if(!started){
+            lastQuestiontextView.setText("Last Question :");
+            lastQuestiontextView.setAlpha(1);
+            resulttextview.setText("Not yet Answered");
+            scoretextview.setText("0/0");
             started=true;
-            submitbutton.setText("SUBMIT");
+            submitButton.setAlpha(0);
             newquestion();
+            timer(30);
+
         }
 
 
@@ -116,5 +147,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView startingImageview=findViewById(R.id.startingImageView);
+        ConstraintLayout gameLayout=findViewById(R.id.gameLayout);
+        startingImageview.animate().alpha(0.5f).translationYBy(-1200).setDuration(9000);
+        gameLayout.animate().alpha(1).setDuration(9200);
     }
 }
