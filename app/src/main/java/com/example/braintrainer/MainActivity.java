@@ -48,16 +48,16 @@ public class MainActivity extends AppCompatActivity {
                 timertextview.setText(Long.toString(millisUntilFinished/1000));
             }
             public void onFinish(){
-            MediaPlayer mediaPlayerbuzzer=MediaPlayer.create(getApplicationContext(),R.raw.buzzer);
-            mediaPlayerbuzzer.start();
-            resulttextview.setText(scoretextview.getText().toString());
-            timeover=true;
-            started=false;
-            lastQuestiontextView.setText("FINAL RESULT :");
-            submitButton.setAlpha(1);
-            totalcorrect=0;
-            totalquestions=0;
-            submitButton.setText("START AGAIN");
+                MediaPlayer mediaPlayerbuzzer=MediaPlayer.create(getApplicationContext(),R.raw.buzzer);
+                mediaPlayerbuzzer.start();
+                resulttextview.setText(scoretextview.getText().toString());
+                timeover=true;
+                started=false;
+                lastQuestiontextView.setText("FINAL RESULT :");
+                submitButton.setAlpha(1);
+                totalcorrect=0;
+                totalquestions=0;
+                submitButton.setText("START AGAIN");
 
             }
         }.start();
@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void checkanswer(View view){
-     resulttextview= findViewById(R.id.resulttextview);
-     scoretextview= findViewById((R.id.scoretextview));
+        resulttextview= findViewById(R.id.resulttextview);
+        scoretextview= findViewById((R.id.scoretextview));
         if(started){
             MediaPlayer clickingSound = MediaPlayer.create(this, R.raw.choose);
             clickingSound.start();
