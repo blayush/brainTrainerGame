@@ -23,8 +23,8 @@
         android:id="@+id/gameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0"
-        android:background="#AE6C6C"
+        android:alpha="1"
+        android:background="#DC8B25"
         tools:context=".MainActivity">
 
         <TextView
@@ -69,8 +69,8 @@
 
         <TextView
             android:id="@+id/timertextview"
-            android:layout_width="71dp"
-            android:layout_height="61dp"
+            android:layout_width="81dp"
+            android:layout_height="63dp"
             android:alpha="1"
             android:background="#FF4081"
             android:fontFamily="@font/almendra_sc"
@@ -80,15 +80,15 @@
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/questiontextview"
-            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.223" />
+            app:layout_constraintVertical_bias="0.222" />
 
         <TextView
             android:id="@+id/scoretextview"
-            android:layout_width="71dp"
-            android:layout_height="68dp"
+            android:layout_width="85dp"
+            android:layout_height="63dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:alpha="1"
@@ -96,14 +96,14 @@
             android:fontFamily="@font/almendra"
             android:gravity="center"
             android:text="0/0"
-            android:textSize="32sp"
+            android:textSize="30sp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/questiontextview"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.226" />
+            app:layout_constraintVertical_bias="0.222" />
 
         <androidx.gridlayout.widget.GridLayout
             android:id="@+id/gridLayout"
