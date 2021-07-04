@@ -23,7 +23,7 @@
         android:id="@+id/gameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="1"
+        android:alpha="0"
         android:background="#DC8B25"
         tools:context=".MainActivity">
 
