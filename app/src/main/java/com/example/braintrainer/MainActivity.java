@@ -3,17 +3,20 @@ package com.example.braintrainer;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -99,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void checkanswer(View view){
+
         resulttextview= findViewById(R.id.resulttextview);
         scoretextview= findViewById((R.id.scoretextview));
         if(started){
@@ -147,9 +151,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Objects.requireNonNull(getSupportActionBar()).hide();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ImageView startingImageview=findViewById(R.id.startingImageView);
         ConstraintLayout gameLayout=findViewById(R.id.gameLayout);
-        startingImageview.animate().alpha(0.5f).translationYBy(-1200).setDuration(9000);
-        gameLayout.animate().alpha(1).setDuration(9200);
+        startingImageview.animate().alpha(0.5f).translationYBy(-1200).setDuration(5000);
+        gameLayout.animate().alpha(1).setDuration(5200);
     }
 }
